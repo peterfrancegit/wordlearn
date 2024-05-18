@@ -2,16 +2,19 @@ import sqlite3
 import random
 
 
+# Bring new frame to front
 def switch_frame(frame):
     frame.tkraise()
     frame.pack_propagate(False)
 
 
+# Delete widgets so they aren't displayed twice on page reload
 def clear_widgets(frame):
     for widget in frame.winfo_children():
         widget.destroy()
 
 
+# Get all word pairs from dictionary
 def fetch_dictionary():
     connection = sqlite3.connect("./dictionary.db")
     cursor = connection.cursor()
@@ -21,6 +24,7 @@ def fetch_dictionary():
     return all_words
 
 
+# Get random word pair from dictionary
 def fetch_question():
     connection = sqlite3.connect("./dictionary.db")
     cursor = connection.cursor()
@@ -32,6 +36,7 @@ def fetch_question():
     return question
 
 
+# Update dictionary with new/edited words
 def send_words(updated_words):
     connection = sqlite3.connect("./dictionary.db")
     cursor = connection.cursor()
@@ -40,13 +45,3 @@ def send_words(updated_words):
         cursor.execute(f"INSERT INTO dictionary (english, french) VALUES ('{english_word}', '{french_word}');")
     connection.commit()
     connection.close()
-
-
-def save_words(entry_list, pages):
-    updated_words = []
-    for entry_pair in entry_list:
-        english, french = entry_pair
-        if english and french:
-            updated_words.append((english.get(), french.get()))
-    send_words(updated_words)
-    pages['View Dictionary'].load_frame(pages)
