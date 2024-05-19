@@ -1,5 +1,17 @@
 import sqlite3
 import random
+import os
+import sys
+
+
+# https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 # Bring new frame to front
@@ -16,7 +28,7 @@ def clear_widgets(frame):
 
 # Get all word pairs from dictionary
 def fetch_dictionary():
-    connection = sqlite3.connect("./dictionary.db")
+    connection = sqlite3.connect(resource_path("./dictionary.db"))
     cursor = connection.cursor()
     cursor.execute("SELECT english, french FROM dictionary;")
     all_words = cursor.fetchall()

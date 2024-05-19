@@ -1,0 +1,3 @@
+([('WordLearn',
+   '/Users/peterfrance/Projects/WordLearn/dist/WordLearn',
+   'EXECUTABLE')],)
