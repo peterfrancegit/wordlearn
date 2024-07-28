@@ -6,12 +6,12 @@ from page import *
 class ViewDictionary(Page):
     def load_frame(self):
         for i in range(3):
-            self.frame.grid_columnconfigure(i, weight=1)
+            self.frame.columnconfigure(i, weight=1)
         clear_widgets(self.frame)
         switch_frame(self.frame)
 
         # Add heading
-        self.add_label(text="Dictionary", font=("TkMenuFont", 14)).grid(row=1, column=1)
+        self.add_label(text="Dictionary", font=("TkMenuFont", 20)).grid(row=0, column=1)
 
         # Display dictionary
         dictionary = fetch_dictionary()
@@ -23,4 +23,4 @@ class ViewDictionary(Page):
         # Add buttons
         self.add_back_button(None)
         self.add_button(text="Edit",
-                        command=lambda: self.children['Edit Dictionary'].load_frame()).grid(row=0, column=3)
+                        command=lambda: self.children['Edit Dictionary'].load_frame()).grid(row=0, column=2)

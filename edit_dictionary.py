@@ -5,11 +5,13 @@ from page import *
 
 class EditDictionary(Page):
     def load_frame(self, new_word=False):
+        for i in range(3):
+            self.frame.columnconfigure(i, weight=1)
         clear_widgets(self.frame)
         switch_frame(self.frame)
 
         # Add heading
-        self.add_label(text="Edit Dictionary", font=("TkMenuFont", 20)).grid(row=1, column=1)
+        self.add_label(text="Edit Dictionary", font=("TkMenuFont", 20)).grid(row=0, column=1)
 
         # Display dictionary as editable fields
         dictionary = fetch_dictionary()
@@ -44,7 +46,7 @@ class EditDictionary(Page):
         # Add buttons
         self.add_back_button(None)
         self.add_button(text="Save Changes",
-                        command=lambda: self.save_words(entry_pair_list)).grid(row=0, column=1)
+                        command=lambda: self.save_words(entry_pair_list)).grid(row=len(entry_pair_list) + 3, column=1)
 
     # Read in words to save to database
     def save_words(self, entry_pair_list):

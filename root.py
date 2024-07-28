@@ -9,6 +9,9 @@ def make_window():
     # Set title
     root.title("Word Learn")
 
+    root.grid_rowconfigure(0, weight=1)
+    root.grid_columnconfigure(0, weight=1)
+
     # Prevent window from resizing
     root.resizable(False, False)
 
