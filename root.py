@@ -9,6 +9,9 @@ def make_window():
     # Set title
     root.title("Word Learn")
 
+    # Prevent window from resizing
+    root.resizable(False, False)
+
     # Centre window
     x = root.winfo_screenwidth() // 2
     y = int(root.winfo_screenheight() * 0.1)

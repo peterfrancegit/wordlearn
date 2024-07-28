@@ -14,16 +14,30 @@ class Page:
         self.children = children
 
     # Method for adding standard button
-    def add_button(self, text, command):
-        button = tk.Button(self.frame,
+    def add_button(self, text, command, width=None):
+        if not width:
+            button = tk.Button(self.frame,
                            text=text,
                            font=("TkMenuFont", 20),
                            bg=self.bg_colour,
                            fg="white",
                            cursor="hand2",
+                           foreground="black",
                            activebackground="#badee2",
                            activeforeground="black",
                            command=command)
+        else:
+            button = tk.Button(self.frame,
+                               text=text,
+                               font=("TkMenuFont", 20),
+                               bg=self.bg_colour,
+                               fg="white",
+                               cursor="hand2",
+                               foreground="black",
+                               activebackground="#badee2",
+                               activeforeground="black",
+                               width=width,
+                               command=command)
         return button
 
     # Method for adding standard text field
